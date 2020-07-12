@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/fotoRestoran"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            tools:ignore="UnusedAttribute" />
+
+        <ImageView
+            android:id="@+id/shadow_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignBottom="@+id/fotoRestoran"
+            android:src="@drawable/bottom_shadow" />
+
+
+        <TextView
+            android:id="@+id/restoranName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fotoRestoran"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp"
+            android:text="Restaurant_Name"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/restoranDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/restoranName"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="16dp"
+            android:text="Deskripsi Resto" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
