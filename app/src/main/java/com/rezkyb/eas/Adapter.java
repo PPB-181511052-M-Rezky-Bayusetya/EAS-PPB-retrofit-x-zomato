@@ -29,13 +29,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Restaurants lotOfRestaurants = (Restaurants) results.toArray()[position];
+        String rating = lotOfRestaurants.getRestaurant().getUserRating().getAggregateRating();
 
         if (lotOfRestaurants.getRestaurant().getThumb() != null) {
             Glide.with(holder.itemView)
                     .load(lotOfRestaurants.getRestaurant().getThumb())
                     .into(holder.imageView);
         }
-        holder.descRestaurant.setText("Average Price : "+Integer.toString(lotOfRestaurants.getRestaurant().getAverageCostForTwo())+lotOfRestaurants.getRestaurant().getCurrency());
+
+        if(lotOfRestaurants.getRestaurant().getDeliveringNow()==1){
+            holder.isDelivering.setText("Open Delivering");
+        }else{
+            holder.isDelivering.setText("Close Delivering");
+        }
+
+        holder.ratingRestaurant.setText(rating + " Star");
+        holder.descRestaurant.setText("Average Price per 2 person : "+Integer.toString(lotOfRestaurants.getRestaurant().getAverageCostForTwo())+lotOfRestaurants.getRestaurant().getCurrency());
         holder.nameRestaurant.setText(lotOfRestaurants.getRestaurant().getName());
     }
 
@@ -49,17 +58,19 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return results.size();
     }
 
-
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView nameRestaurant;
         private TextView descRestaurant;
+        private TextView ratingRestaurant;
+        private TextView isDelivering;
         private ImageView imageView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            isDelivering = itemView.findViewById(R.id.restoranIsDelivery);
+            ratingRestaurant = itemView.findViewById(R.id.restoranStar);
             nameRestaurant = itemView.findViewById(R.id.restoranName);
             descRestaurant = itemView.findViewById(R.id.restoranDesc);
             imageView = itemView.findViewById(R.id.fotoRestoran);
