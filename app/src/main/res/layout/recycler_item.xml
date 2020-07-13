@@ -28,13 +28,13 @@
             android:layout_alignBottom="@+id/fotoRestoran"
             android:src="@drawable/bottom_shadow" />
 
-
         <TextView
             android:id="@+id/restoranName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/fotoRestoran"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="6dp"
             android:layout_marginTop="10dp"
             android:text="Restaurant_Name"
             android:textSize="17sp" />
@@ -44,21 +44,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/restoranName"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="6dp"
             android:layout_marginTop="5dp"
-            android:text="Deskripsi Resto" />
+            android:text="Average Price" />
 
         <TextView
             android:id="@+id/restoranStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/restoranDesc"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="16dp"
+            android:layout_marginEnd="6dp"
             android:text="Rating" />
 
         <TextView
@@ -67,11 +69,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-2dp"
             android:layout_marginTop="5dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="6dp"
             android:layout_below="@id/restoranDesc"
             android:gravity="end"
             android:layout_toRightOf="@+id/restoranStar"
             android:text="Delivering" />
-
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

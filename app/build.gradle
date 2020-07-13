@@ -59,5 +59,11 @@ dependencies {
     //Material Design UI
     implementation "com.google.android.material:material:1.1.0"
 
+    //OSM-Droid
+    implementation 'org.osmdroid:osmdroid-android:6.1.6'
+    implementation 'org.osmdroid:osmdroid-wms:6.1.6'
+    implementation 'org.osmdroid:osmdroid-mapsforge:6.1.6'
+    implementation 'org.osmdroid:osmdroid-geopackage:6.1.6'
+
 
 }

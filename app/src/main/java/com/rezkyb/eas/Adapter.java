@@ -1,5 +1,8 @@
 package com.rezkyb.eas;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<Restaurants> results = new ArrayList<>();
 
+    Bundle bundle = null;
+    Intent intent = null;
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,7 +35,20 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Restaurants lotOfRestaurants = (Restaurants) results.toArray()[position];
+
+        bundle=new Bundle();
+
         String rating = lotOfRestaurants.getRestaurant().getUserRating().getAggregateRating();
+        String averagePrice = "Average Price per 2 person : "+Integer.toString(lotOfRestaurants.getRestaurant().getAverageCostForTwo())+lotOfRestaurants.getRestaurant().getCurrency();
+
+        bundle.putString("alamat", lotOfRestaurants.getRestaurant().getLocation().getAddress());
+        bundle.putString("latitude",lotOfRestaurants.getRestaurant().getLocation().getLatitude());
+        bundle.putString("longitude",lotOfRestaurants.getRestaurant().getLocation().getLongitude());
+        bundle.putString("harga",averagePrice);
+        bundle.putString("rating",rating);
+        bundle.putString("nama",lotOfRestaurants.getRestaurant().getName());
+        bundle.putString("thumbnail",lotOfRestaurants.getRestaurant().getThumb());
+
 
         if (lotOfRestaurants.getRestaurant().getThumb() != null) {
             Glide.with(holder.itemView)
@@ -44,7 +63,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         }
 
         holder.ratingRestaurant.setText(rating + " Star");
-        holder.descRestaurant.setText("Average Price per 2 person : "+Integer.toString(lotOfRestaurants.getRestaurant().getAverageCostForTwo())+lotOfRestaurants.getRestaurant().getCurrency());
+        holder.descRestaurant.setText(averagePrice);
         holder.nameRestaurant.setText(lotOfRestaurants.getRestaurant().getName());
     }
 
@@ -58,22 +77,35 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         return results.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView nameRestaurant;
         private TextView descRestaurant;
         private TextView ratingRestaurant;
         private TextView isDelivering;
         private ImageView imageView;
+        private final Context context;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            context= itemView.getContext();
 
             isDelivering = itemView.findViewById(R.id.restoranIsDelivery);
             ratingRestaurant = itemView.findViewById(R.id.restoranStar);
             nameRestaurant = itemView.findViewById(R.id.restoranName);
             descRestaurant = itemView.findViewById(R.id.restoranDesc);
             imageView = itemView.findViewById(R.id.fotoRestoran);
+            itemView.setClickable(true);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            
+            intent = new Intent(context,DetailActivity.class);
+            intent.putExtras(bundle);
+            context.startActivity(intent);
+
         }
     }
 }
